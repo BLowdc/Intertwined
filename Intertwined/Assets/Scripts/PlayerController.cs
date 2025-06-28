@@ -1,4 +1,7 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
+    private int sprintMultiplier = 2;
+
 
     private void Awake()
     {
@@ -23,8 +28,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerInput();
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed *= sprintMultiplier;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed /= sprintMultiplier;
+        }
     }
-
     private void FixedUpdate()
     {
         Move();
@@ -32,7 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        movement = playerControls.Movement.Move.ReadValue<Vector2>();
+        movement = playerControls.Movement.Move.ReadValue<Vector2>(); 
+        // Debug.Log($"Movement Input: {movement * (moveSpeed * Time.fixedDeltaTime)}");
     }
     
     private void Move()
