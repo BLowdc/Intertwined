@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2404148283277476889}
   - component: {fileID: 7079314658754026689}
   - component: {fileID: 4714417403705604393}
+  - component: {fileID: 1396048444079529530}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41bca492bf72d24b8d44efa8e76d8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!61 &4714417403705604393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +177,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1396048444079529530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674841593692099229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6096d0301b7384d419732eaab6a10646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxMana: 50
+  manaRegenRate: 5
+  manaDrainRate: 10
