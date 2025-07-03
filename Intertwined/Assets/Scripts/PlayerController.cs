@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int sprintMultiplier = 2;
     private SpriteRenderer spriteRenderer;
+    private bool sprintkeyHeld;
 
     private void Awake()
     {
@@ -23,45 +24,48 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        playerControls.Enable();
+        movement = context.ReadValue<Vector2>();
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            sprintkeyHeld = true;
+        }
+        else if (context.canceled)
+        {
+            sprintkeyHeld = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerInput();
-
-        Debug.Log(playerStats.Mana);
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && playerStats.Mana > playerStats.MaxMana * 0.25f)
+        if (sprintkeyHeld && playerStats.Mana > playerStats.MaxMana * 0.25f)
         {
-            moveSpeed *= sprintMultiplier;
-            isSprinting = true;
-            spriteRenderer.color = Color.green;
-
+            if (!isSprinting)
+            {
+                moveSpeed *= sprintMultiplier;
+                isSprinting = true;
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || playerStats.Mana <= 0)
+        else if (!sprintkeyHeld || playerStats.Mana <= 0)
         {
-            moveSpeed = 3f;
-            isSprinting = false;
-            spriteRenderer.color = Color.white;
+            if (isSprinting)
+            {
+                moveSpeed /= sprintMultiplier;
+                isSprinting = false;
+            }
         }
+        
     }
     private void FixedUpdate()
     {
-        Move();
-    }
-
-    private void PlayerInput()
-    {
-        movement = playerControls.Movement.Move.ReadValue<Vector2>(); 
-    }
-    
-    private void Move()
-    {
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
+
 }
 

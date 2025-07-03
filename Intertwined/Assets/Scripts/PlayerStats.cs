@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int maxMana = 50;
     public int MaxMana => maxMana;
     private int health;
-    private float mana;
+    [SerializeField] private float mana;
     public float Mana => mana;
     [SerializeField] private float manaRegenRate = 5f;
     [SerializeField] private float manaDrainRate = 10f;
