@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class SpawnBridge : MonoBehaviour
 {
+    public PressurePlate pressurePlateA;
+    public PressurePlate pressurePlateB;
     public GameObject bridge;
-    private PressurePlate pressurePlate;
 
     void Start()
     {
-        pressurePlate = GetComponent<PressurePlate>();
         bridge.SetActive(true);
     }
     void Update()
     {
-        if (pressurePlate.IsPressed)
+        if (pressurePlateA.IsPressed || pressurePlateB.IsPressed)
         {
             bridge.SetActive(false);
         }
