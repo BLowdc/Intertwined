@@ -7,15 +7,16 @@ TagManager:
   - Enemy
   - Player1
   - Player2
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Entity
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Projectile
   - 
   - 
   - 
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Entities
     uniqueID: 332318243
+    locked: 0
+  - name: Projectile
+    uniqueID: 2045456405
     locked: 0
   - name: Environment
     uniqueID: 2616243603
