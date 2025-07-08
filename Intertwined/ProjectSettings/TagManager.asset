@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Entity
   - Water
   - UI
   - 
