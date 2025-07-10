@@ -12,11 +12,14 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float manaRegenRate = 5f;
     [SerializeField] private float manaDrainRate = 10f;
     private PlayerController playerController;
+    private float invincibilityDuration = 1f;
+    private float lastHit;
     void Start()
     {
         playerController = GetComponent<PlayerController>();
         health = maxHealth;
         mana = maxMana;
+        lastHit = Time.time;
     }
 
     // Update is called once per frame
@@ -35,19 +38,22 @@ public class PlayerStats : MonoBehaviour
             if (mana > maxMana) mana = maxMana;
             // Debug.Log($"Regening Mana: {mana}");
         }
+
+        lastHit += Time.deltaTime;
     }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hitbox"))
+        if (collision.CompareTag("Hitbox") && lastHit >= invincibilityDuration)
         {
             health -= collision.GetComponentInParent<EnemyStats>().Damage;
+            lastHit = 0f;
             if (health <= 0)
             {
                 health = 0;
                 // player dies
             }
-            // Debug.Log(health);
+            Debug.Log(health);
         }
     }
 }

@@ -6,8 +6,12 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private int damage = 10;
     public int Damage => damage;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        // Physics2D.IgnoreLayerCollision(3, 6, true);
+        // Physics2D.IgnoreLayerCollision(3, 8, false); 
+    }
     void Start()
     {
         currentHealth = maxHealth;
