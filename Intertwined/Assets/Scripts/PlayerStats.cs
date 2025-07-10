@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
         if (playerController.IsSprinting && mana > 0)
         {
             mana -= manaDrainRate * Time.deltaTime;
-            if (mana < 0) mana = 0; 
+            if (mana < 0) mana = 0;
             // Debug.Log($"Draining Mana: {mana}");
         }
 
@@ -34,6 +34,20 @@ public class PlayerStats : MonoBehaviour
             mana += manaRegenRate * Time.deltaTime;
             if (mana > maxMana) mana = maxMana;
             // Debug.Log($"Regening Mana: {mana}");
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hitbox"))
+        {
+            health -= collision.GetComponentInParent<EnemyStats>().Damage;
+            if (health <= 0)
+            {
+                health = 0;
+                // player dies
+            }
+            // Debug.Log(health);
         }
     }
 }

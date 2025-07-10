@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    private Camera Cam1;
     [SerializeField] private int damage = 10;
     public int Damage => damage;
     [SerializeField] private float speed = 5f;
     private Vector3 direction;
     void Awake()
     {
-        // Debug.Log(transform.position);
+        Cam1 = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
     void Start()
     {
-        direction = Input.mousePosition - transform.position;
+        Vector3 mousePosition = Cam1.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+        direction = mousePosition - transform.position;
+        // Debug.Log("Direction: " + direction);
     }
 
     void FixedUpdate()

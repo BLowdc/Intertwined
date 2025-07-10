@@ -4,6 +4,8 @@ public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
+    [SerializeField] private int damage = 10;
+    public int Damage => damage;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
