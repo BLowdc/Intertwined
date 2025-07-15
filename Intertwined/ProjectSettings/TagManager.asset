@@ -53,7 +53,7 @@ TagManager:
   - name: Entities
     uniqueID: 332318243
     locked: 0
-  - name: Projectile
+  - name: PlayerAttack
     uniqueID: 2045456405
     locked: 0
   - name: Environment

@@ -8,20 +8,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     private bool isSprinting;
     public bool IsSprinting => isSprinting;
-    private PlayerControls playerControls;
+    // private PlayerControls playerControls;
     private PlayerStats playerStats;
     private Vector2 movement;
     private Rigidbody2D rb;
     private int sprintMultiplier = 2;
-    private SpriteRenderer spriteRenderer;
+    // private SpriteRenderer spriteRenderer;
     private bool sprintkeyHeld;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        // playerControls = new PlayerControls();
         playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void OnMove(InputAction.CallbackContext context)

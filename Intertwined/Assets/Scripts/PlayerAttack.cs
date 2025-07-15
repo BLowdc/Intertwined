@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Shooting : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     [SerializeField] private GameObject[] projectile;
     private GameObject proj;
@@ -13,16 +14,21 @@ public class Shooting : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && lastShot >= cooldown)
-        {
-            Shoot();
-            lastShot = 0f;
-        }
         lastShot += Time.deltaTime;
-        // Debug.Log(lastShot);
+    }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (lastShot >= cooldown)
+            {
+                Strike();
+                lastShot = 0f;
+            }
+        }
     }
 
-    private void Shoot()
+    private void Strike()
     {
         proj = Instantiate(projectile[0], transform.position, Quaternion.identity);
     }
