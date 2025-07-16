@@ -15,7 +15,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
+        if (collision.CompareTag("Player1") || collision.CompareTag("Player2") || collision.CompareTag("Box"))
         {
             spriteRenderer.sprite = pressedPlate;
             isPressed = true;
@@ -24,7 +24,7 @@ public class PressurePlate : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
+        if (collision.CompareTag("Player1") || collision.CompareTag("Player2") || collision.CompareTag("Box"))
         {
             spriteRenderer.sprite = defaultPlate;
             isPressed = false;
