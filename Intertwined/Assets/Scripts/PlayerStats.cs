@@ -42,11 +42,11 @@ public class PlayerStats : MonoBehaviour
         lastHit += Time.deltaTime;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.CompareTag("Hitbox") && lastHit >= invincibilityDuration)
+        if (collision.collider.CompareTag("Enemy") && lastHit >= invincibilityDuration)
         {
-            health -= collision.GetComponentInParent<EnemyStats>().Damage;
+            health -= collision.collider.GetComponentInParent<EnemyStats>().Damage;
             lastHit = 0f;
             if (health <= 0)
             {

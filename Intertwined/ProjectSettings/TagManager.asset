@@ -9,7 +9,7 @@ TagManager:
   - Player2
   - Projectile
   - MainCamera2
-  - Hitbox
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -23,17 +23,17 @@ public class ProjectileController : MonoBehaviour
     {
         transform.position += direction.normalized * speed * Time.deltaTime;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
             enemyStats.TakeDamage(damage);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (!collision.CompareTag("Spawner"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

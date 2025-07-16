@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private float distance1; // Distance to player1
     private float distance2; // Distance to player2
     private Vector3 direction; 
-    [SerializeField] private float aggroRange = 3f;
+    [SerializeField] private float aggroRange = 10f;
 
     // Update is called once per frame
     void Start()
