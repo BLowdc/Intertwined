@@ -4,13 +4,15 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Enemy
   - Player1
   - Player2
   - Projectile
   - MainCamera2
   - Spawner
   - Box
+  - DmgSource
+  - Undefined
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - Projectile
-  - 
-  - 
+  - PlayerProjectile
+  - Spawner
+  - EnemyProjectile
   - 
   - 
   - 
@@ -54,7 +56,7 @@ TagManager:
   - name: Entities
     uniqueID: 332318243
     locked: 0
-  - name: PlayerAttack
+  - name: Attacks
     uniqueID: 2045456405
     locked: 0
   - name: Environment

@@ -261,6 +261,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 741f458e-53d5-42a4-9360-8015d994bb9c
     m_ActionName: 'Movement2/Sprint[/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c8d6f2af-8f96-49c9-86c3-a40880b272c9
+    m_ActionName: 'Movement/Attack[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7caf0393-d78b-46cf-b31e-43d06961277a
+    m_ActionName: 'Movement2/Attack[/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement2

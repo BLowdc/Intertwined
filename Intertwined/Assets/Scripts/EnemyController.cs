@@ -7,16 +7,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speed = 1f;
     private float distance1; // Distance to player1
     private float distance2; // Distance to player2
-    private Vector3 direction; 
+    private Vector3 direction;
     [SerializeField] private float aggroRange = 10f;
+    private EnemyStats enemyStats;
 
     // Update is called once per frame
     void Start()
     {
         player1 = GameObject.FindWithTag("Player1");
         player2 = GameObject.FindWithTag("Player2");
+        enemyStats = GetComponent<EnemyStats>();
     }
-    void FixedUpdate()
+    void Update()
     {
         distance1 = (player1.transform.position - transform.position).magnitude;
         distance2 = (player2.transform.position - transform.position).magnitude;
@@ -40,5 +42,13 @@ public class EnemyController : MonoBehaviour
             transform.position += direction * speed * Time.deltaTime;
         }
     }   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
+        {
+            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+            playerStats.TakeDamage(enemyStats.Damage);
+        }
+    }
 }
 

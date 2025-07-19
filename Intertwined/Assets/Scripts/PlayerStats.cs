@@ -42,18 +42,19 @@ public class PlayerStats : MonoBehaviour
         lastHit += Time.deltaTime;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void TakeDamage(int damage)
     {
-        if (collision.collider.CompareTag("Enemy") && lastHit >= invincibilityDuration)
+        if (lastHit < invincibilityDuration) return;
+
+        health -= damage;
+        lastHit = 0f;
+
+        if (health <= 0)
         {
-            health -= collision.collider.GetComponentInParent<EnemyStats>().Damage;
-            lastHit = 0f;
-            if (health <= 0)
-            {
-                health = 0;
-                // player dies
-            }
-            Debug.Log(health);
+            health = 0;
+            // Handle player death
+            Debug.Log("Player has died.");
         }
+        Debug.Log($"Player Health: {health}");
     }
 }

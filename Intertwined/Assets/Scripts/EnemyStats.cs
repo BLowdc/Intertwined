@@ -4,6 +4,7 @@ public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
+    public int CurrentHealth => currentHealth;
     [SerializeField] private int damage = 10;
     public int Damage => damage;
 

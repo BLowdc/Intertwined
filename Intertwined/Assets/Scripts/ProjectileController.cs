@@ -29,11 +29,7 @@ public class ProjectileController : MonoBehaviour
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
             enemyStats.TakeDamage(damage);
-            Destroy(gameObject);
         }
-        else if (!collision.CompareTag("Spawner"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
