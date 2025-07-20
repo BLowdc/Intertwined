@@ -14,8 +14,8 @@ public class Boss1Proj : MonoBehaviour
         if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
         {
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-            playerStats.TakeDamage(damage); // Example damage value
+            playerStats.TakeDamage(damage); 
         }
-        Destroy(gameObject); // Destroy the projectile after hitting a player 
+        Destroy(gameObject);
     }
 }

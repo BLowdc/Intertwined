@@ -13,6 +13,7 @@ public class SpawnEnemies1 : MonoBehaviour
         if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
         {
             enemies.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }

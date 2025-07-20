@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
-    public int CurrentHealth => currentHealth;
+    public int maxHealth = 100;
+    public int currentHealth;
     [SerializeField] private int damage = 10;
     public int Damage => damage;
 
