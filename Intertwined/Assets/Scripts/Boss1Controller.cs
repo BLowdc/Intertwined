@@ -8,7 +8,7 @@ public class Boss1Controller : MonoBehaviour
     private float distance1; // Distance to player1
     private float distance2; // Distance to player2
     [SerializeField] private float aggroRange = 20f;
-    [SerializeField] private GameObject[] projectile;
+    [SerializeField] private GameObject projectile;
     private float fireRate;
     private float lastFire;
 
@@ -31,7 +31,7 @@ public class Boss1Controller : MonoBehaviour
         }
         if (lastFire > fireRate)
         {
-            Instantiate(projectile[0], transform.position, Quaternion.Euler(0, 0, -90));
+            Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, -90));
             lastFire = 0f;
         }
         lastFire += Time.deltaTime;

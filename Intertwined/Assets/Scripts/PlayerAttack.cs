@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private GameObject[] projectile;
+    [SerializeField] private GameObject projectile;
     private GameObject proj;
     private float cooldown = 0.5f;
     private float lastShot;
@@ -30,6 +30,6 @@ public class Attack : MonoBehaviour
 
     private void Strike()
     {
-        proj = Instantiate(projectile[0], transform.position, Quaternion.identity);
+        proj = Instantiate(projectile, transform.position, Quaternion.identity);
     }
 }
