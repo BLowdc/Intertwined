@@ -41,12 +41,12 @@ public class EnemyController : MonoBehaviour
             direction = (player2.transform.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
         }
-    }   
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player1") || collision.CompareTag("Player2"))
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    { 
+        PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+        if (playerStats != null)
         {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             playerStats.TakeDamage(enemyStats.Damage);
         }
     }

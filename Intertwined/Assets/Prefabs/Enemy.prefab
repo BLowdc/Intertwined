@@ -193,3 +193,5 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   damage: 10
+  portal: {fileID: 0}
+  portalPosition: {x: 0, y: 0, z: 0}

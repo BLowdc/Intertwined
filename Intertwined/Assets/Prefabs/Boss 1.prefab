@@ -179,6 +179,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   damage: 10
+  portal: {fileID: 0}
+  portalPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5871331664045484202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,4 +195,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   aggroRange: 20
-  projectile: []
+  projectile: {fileID: 0}

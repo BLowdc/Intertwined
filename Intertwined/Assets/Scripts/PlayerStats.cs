@@ -1,13 +1,16 @@
 using System.Collections;
 using Unity.Mathematics;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
+    public int MaxHealth => maxHealth;
     [SerializeField] private int maxMana = 50;
     public int MaxMana => maxMana;
-    private int health;
+    [SerializeField] private int health;
+    public int Health => health;
     [SerializeField] private float mana;
     public float Mana => mana;
     [SerializeField] private float manaRegenRate = 5f;
@@ -15,12 +18,15 @@ public class PlayerStats : MonoBehaviour
     private PlayerController playerController;
     private float invincibilityDuration = 1f;
     private float lastHit;
+    private RespawnPlayerManager respawnPlayerManager;  
     void Start()
     {
         playerController = GetComponent<PlayerController>();
+        respawnPlayerManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<RespawnPlayerManager>();
         health = maxHealth;
         mana = maxMana;
         lastHit = Time.time;
+
     }
 
     // Update is called once per frame
@@ -59,17 +65,16 @@ public class PlayerStats : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Player has died");
-        StartCoroutine(RespawnAfterDelay(5));
+        respawnPlayerManager.RespawnPlayer(this, 5);
     }
 
-    IEnumerator RespawnAfterDelay(int delay)
+    public void SetHealth(int newHealth)
     {
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(delay);
-        Debug.Log("Respawning Player");
-        health = maxHealth;
-        mana = maxMana;
-        gameObject.SetActive(true);         
+        health = Mathf.Clamp(newHealth, 0, maxHealth);
+    }
+
+    public void SetMana(int newMana)
+    {
+        mana = Mathf.Clamp(newMana, 0, maxMana);
     }
 }

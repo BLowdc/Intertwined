@@ -13,6 +13,7 @@ TagManager:
   - DmgSource
   - Undefined
   - Enemy
+  - Manager
   layers:
   - Default
   - TransparentFX
