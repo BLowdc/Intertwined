@@ -62,5 +62,8 @@ TagManager:
   - name: Environment
     uniqueID: 2616243603
     locked: 0
+  - name: UI
+    uniqueID: 4182568551
+    locked: 0
   m_RenderingLayers:
   - Default

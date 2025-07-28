@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -52,9 +53,23 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            // Handle player death
-            Debug.Log("Player has died.");
+            Die();
         }
-        Debug.Log($"Player Health: {health}");
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player has died");
+        StartCoroutine(RespawnAfterDelay(5));
+    }
+
+    IEnumerator RespawnAfterDelay(int delay)
+    {
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Respawning Player");
+        health = maxHealth;
+        mana = maxMana;
+        gameObject.SetActive(true);         
     }
 }
