@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     private float invincibilityDuration = 1f;
     private float lastHit;
     private RespawnPlayerManager respawnPlayerManager;  
+    [SerializeField] private float respawnTime = 5f;
     void Start()
     {
         playerController = GetComponent<PlayerController>();
@@ -65,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Die()
     {
-        respawnPlayerManager.RespawnPlayer(this, 5);
+        respawnPlayerManager.RespawnPlayer(this, respawnTime);
     }
 
     public void SetHealth(int newHealth)

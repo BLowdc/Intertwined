@@ -60,7 +60,16 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
             }
         }
-        
+
+        if (movement.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
+        else if (movement.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
     }
     private void FixedUpdate()
     {

@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 332318243
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,17 +154,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03121972, y: -0.0050814897}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 1.1111112}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.85728073, y: 1.0076767}
   m_EdgeRadius: 0
 --- !u!114 &3524588032559671579
 MonoBehaviour:
@@ -180,9 +180,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxMana: 30
+  health: 0
   mana: 0
   manaRegenRate: 5
   manaDrainRate: 10
+  respawnTime: 7
 --- !u!114 &7640105745670030791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +268,19 @@ MonoBehaviour:
     m_ActionId: c8d6f2af-8f96-49c9-86c3-a40880b272c9
     m_ActionName: 'Movement/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2362104641798241126}
+        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7caf0393-d78b-46cf-b31e-43d06961277a
     m_ActionName: 'Movement2/Attack[/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -286,4 +300,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78c1d0e2b6eab74fac0890923f1a87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 2525646767292487489, guid: 308c609dc5ac96c44944c203cb287849, type: 3}

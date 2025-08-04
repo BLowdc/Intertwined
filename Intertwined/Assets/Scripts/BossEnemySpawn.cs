@@ -36,7 +36,8 @@ public class BossEnemySpawn : MonoBehaviour
     {
         for (int i = 0; i < n; i++)
         {
-            Instantiate(enemy[0], transform.position, Quaternion.identity);
+            int randomIndex = Random.Range(0, 2);
+            Instantiate(enemy[randomIndex], transform.position, Quaternion.identity);
         }
     }
 }

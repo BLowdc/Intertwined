@@ -14,33 +14,68 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
         enemyStats = GetComponent<EnemyStats>();
     }
     void Update()
     {
-        distance1 = (player1.transform.position - transform.position).magnitude;
-        distance2 = (player2.transform.position - transform.position).magnitude;
-        // Debug.Log(distance1 + " " + distance2); 
-        if (distance1 < aggroRange || distance2 < aggroRange)
-        {
-            Move();
-        }
-    }
+        player1 = GameObject.FindWithTag("Player1");
+        player2 = GameObject.FindWithTag("Player2");
 
-    public void Move()
-    {
-        if (distance1 < distance2)
+        if (player1 == null && player2 == null)
         {
-            direction = (player1.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            return;
+        }
+        else if (player1 == null)
+        {
+            distance2 = (player2.transform.position - transform.position).magnitude;
+            if (distance2 < aggroRange)
+            {
+                Target(player2);
+            }
+        }
+        else if (player2 == null)
+        {
+            distance1 = (player1.transform.position - transform.position).magnitude;
+            if (distance1 < aggroRange)
+            {
+                Target(player1);
+            }
         }
         else
         {
-            direction = (player2.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            distance1 = (player1.transform.position - transform.position).magnitude;
+            distance2 = (player2.transform.position - transform.position).magnitude;
+
+            if (distance1 < distance2)
+            {
+                if (distance1 < aggroRange)
+                {
+                    Target(player1);
+                }
+            }
+            else
+            {
+                if (distance2 < aggroRange)
+                {
+                    Target(player2);
+                }
+            }
         }
+
+        if (direction.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
+        else if (direction.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    public void Target(GameObject player)
+    {
+        direction = (player.transform.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
     }
     private void OnCollisionStay2D(Collision2D collision)
     { 
@@ -51,4 +86,3 @@ public class EnemyController : MonoBehaviour
         }
     }
 }
-

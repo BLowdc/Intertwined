@@ -3,12 +3,12 @@ using UnityEngine;
 public class PauseScreen : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject playerStatsUI;
     private bool isPaused = false;
 
     void Start()
     {
         Time.timeScale = 1f;
-        pauseMenuUI.SetActive(false);
     }
     void Update()
     {
@@ -17,7 +17,8 @@ public class PauseScreen : MonoBehaviour
             if (!isPaused)
             {
                 Time.timeScale = 0f;
-                pauseMenuUI.SetActive(true);                                                                                                                                                                                   
+                pauseMenuUI.SetActive(true);    
+                playerStatsUI.SetActive(false);                                                                                                                                                                               
             }
         }
     }

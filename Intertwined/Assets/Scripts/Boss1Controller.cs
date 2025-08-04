@@ -15,20 +15,56 @@ public class Boss1Controller : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
-        fireRate = 2f;
+        fireRate = 1.5f;
         lastFire = Time.time;
     }
     void Update()
     {
-        distance1 = (player1.transform.position - transform.position).magnitude;
-        distance2 = (player2.transform.position - transform.position).magnitude;
-        // Debug.Log(distance1 + " " + distance2); 
-        if (distance1 < aggroRange || distance2 < aggroRange)
+        player1 = GameObject.FindWithTag("Player1");
+        player2 = GameObject.FindWithTag("Player2");
+
+        if (player1 == null && player2 == null)
         {
-            Move();
+            return;
         }
+        else if (player1 == null)
+        {
+            distance2 = (player2.transform.position - transform.position).magnitude;
+            if (distance2 < aggroRange)
+            {
+                Target(player2);
+            }
+        }
+        else if (player2 == null)
+        {
+            distance1 = (player1.transform.position - transform.position).magnitude;
+            if (distance1 < aggroRange)
+            {
+                Target(player1);
+            }
+        }
+        else
+        {
+            distance1 = (player1.transform.position - transform.position).magnitude;
+            distance2 = (player2.transform.position - transform.position).magnitude;
+
+            if (distance1 < distance2)
+            {
+                if (distance1 < aggroRange)
+                {
+                    Target(player1);
+                }
+            }
+            else
+            {
+                if (distance2 < aggroRange)
+                {
+                    Target(player2);
+                }
+            }
+        }
+
+        // firing
         if (lastFire > fireRate)
         {
             Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, -90));
@@ -37,29 +73,15 @@ public class Boss1Controller : MonoBehaviour
         lastFire += Time.deltaTime;
     }
 
-    public void Move()
+    public void Target(GameObject player)
     {
-        if (distance1 < distance2)
+        if (player.transform.position.y > transform.position.y)
         {
-            if (player1.transform.position.y > transform.position.y)
-            {
-                transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-            }
-            else
-            {
-                transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
-            }
+            transform.position += new Vector3(0, speed * Time.deltaTime, 0);
         }
         else
         {
-            if (player2.transform.position.y > transform.position.y)
-            {
-                transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-            }
-            else
-            {
-                transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
-            }
+            transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
         }
     }
 }   
