@@ -18,8 +18,10 @@ public class PlayerStats : MonoBehaviour
     private PlayerController playerController;
     private float invincibilityDuration = 1f;
     private float lastHit;
-    private RespawnPlayerManager respawnPlayerManager;  
+    private RespawnPlayerManager respawnPlayerManager;
     [SerializeField] private float respawnTime = 5f;
+    private int score = 0;
+    public int Score => score;
     void Start()
     {
         playerController = GetComponent<PlayerController>();
@@ -77,5 +79,14 @@ public class PlayerStats : MonoBehaviour
     public void SetMana(int newMana)
     {
         mana = Mathf.Clamp(newMana, 0, maxMana);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Gem"))
+        {
+            score += 50;
+            Destroy(other.gameObject);
+        }
     }
 }

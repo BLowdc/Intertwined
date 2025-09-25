@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Manager
   - PlayerStats
+  - Gem
   layers:
   - Default
   - TransparentFX
