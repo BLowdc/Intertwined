@@ -6,6 +6,7 @@ public class PlayerUIController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Slider slider;
+    [SerializeField] private Text score;
     private PlayerStats playerStats;
     public bool isHealth;
 
@@ -15,19 +16,21 @@ public class PlayerUIController : MonoBehaviour
     }
     void Update()
     {
-        if (isHealth)
+        if (player != null && slider != null)
         {
-            if (player != null)
+            if (isHealth)
             {
                 UpdateSlider(playerStats.Health, playerStats.MaxHealth);
             }
-        }
-        else
-        {
-            if (player != null)
-            {
-                UpdateSlider(playerStats.Mana, playerStats.MaxMana);
+            else
+            {              
+                UpdateSlider(playerStats.Mana, playerStats.MaxMana);   
             }
+        }
+
+        if (player != null && score != null)
+        {
+            score.text = $"Score: {playerStats.Score}";
         }
     }
 
