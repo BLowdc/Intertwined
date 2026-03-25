@@ -16,7 +16,7 @@ public class GateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if  (plate1.IsPressed && plate2.IsPressed && plate3.IsPressed)
+        if (plate1.IsPressed && plate2.IsPressed && plate3.IsPressed)
         {
             gate.SetActive(false);
         }
