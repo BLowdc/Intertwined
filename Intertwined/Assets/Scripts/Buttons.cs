@@ -10,6 +10,9 @@ public class Buttons : MonoBehaviour
         pauseScreen = GameObject.Find("Pause Screen");
         playerStats = GameObject.Find("Player Stats");
         controlsScreen = GameObject.Find("Controls Screen");
+
+        // checks whether all 3 objects exists (not null) before setting them active/inavtive
+
         if (pauseScreen != null && playerStats != null && controlsScreen != null)
         {
             pauseScreen.SetActive(false);
@@ -17,6 +20,10 @@ public class Buttons : MonoBehaviour
             controlsScreen.SetActive(false);
         }
     }
+
+    // ----------Buttons MANAGEMENT----------
+
+    // procedures for different buttons
     public void Play()
     {
         SceneManager.LoadScene("Level 1");

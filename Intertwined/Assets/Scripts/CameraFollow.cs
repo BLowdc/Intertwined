@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
-    public float lerpSpeed = 1.0f;
+
+    public float lerpSpeed = 1.0f; // linear interpolation speed
 
     private Vector3 offset = new Vector3(0, 0, -10);
 
@@ -11,14 +12,16 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        if (target == null) return;
+        // checks if target exists
 
-        // offset = transform.position - target.position;
+        if (target == null) return;
     }
 
     private void FixedUpdate()
     {
         if (target == null) return;
+
+        // uses linear interpolation to make camera follow player smoothly
 
         targetPos = target.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
