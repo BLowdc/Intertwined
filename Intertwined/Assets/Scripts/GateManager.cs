@@ -7,13 +7,12 @@ public class GateManager : MonoBehaviour
     public PressurePlate plate3;
     public GameObject gate;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gate.SetActive(true);
     }
 
-    // Update is called once per frame
+    // Opens gate if all 3 pressure plates are activated
     void Update()
     {
         if (plate1.IsPressed && plate2.IsPressed && plate3.IsPressed)

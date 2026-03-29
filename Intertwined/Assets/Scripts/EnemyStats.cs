@@ -11,20 +11,22 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
-        
-        // Physics2D.IgnoreLayerCollision(3, 6, true);
-        // Physics2D.IgnoreLayerCollision(3, 8, false); 
+
     }
     void Start()
     {
+        // sets health to max health upon instantiation
         currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // ONLY FOR BOSS
         if (currentHealth <= 0)
         {
+            // if portal object is attached to boss, then spawn portal when the boss dies
+
             if (portal != null)
             {
                 Instantiate(portal, portalPosition, Quaternion.identity);
@@ -34,14 +36,15 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    // calculates damage
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        // prevents health from going below 0
         if (currentHealth < 0)
         {
             currentHealth = 0;
         }
     }
 }
-
-    

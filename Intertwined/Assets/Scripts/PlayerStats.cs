@@ -1,6 +1,3 @@
-using System.Collections;
-using Unity.Mathematics;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -25,16 +22,23 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<PlayerController>();
+        
+        // Finds the respawn manager in the scene
         respawnPlayerManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<RespawnPlayerManager>();
+        
+        // initialises health and mana to their max value
         health = maxHealth;
         mana = maxMana;
+
         lastHit = Time.time;
+
 
     }
 
-    // Update is called once per frame
+    // Handles mana drain/regeneration and invincibility timer
     void Update()
     {
+        // Drains mana when sprinting
         if (playerController.IsSprinting && mana > 0)
         {
             mana -= manaDrainRate * Time.deltaTime;
@@ -42,6 +46,7 @@ public class PlayerStats : MonoBehaviour
             // Debug.Log($"Draining Mana: {mana}");
         }
 
+        // Regenerates mana when not sprinting
         if (!playerController.IsSprinting && mana < maxMana)
         {
             mana += manaRegenRate * Time.deltaTime;
@@ -49,16 +54,20 @@ public class PlayerStats : MonoBehaviour
             // Debug.Log($"Regening Mana: {mana}");
         }
 
+        // Records time since last hit
         lastHit += Time.deltaTime;
     }
 
+    // Performs damage calculations
     public void TakeDamage(int damage)
     {
+        // If not enough time has passed since last hit, don't deal damage
         if (lastHit < invincibilityDuration) return;
 
         health -= damage;
         lastHit = 0f;
 
+        // Triggers death if health reaches 0
         if (health <= 0)
         {
             health = 0;
@@ -66,11 +75,13 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    // Handles player death logic
     public void Die()
     {
         respawnPlayerManager.RespawnPlayer(this, respawnTime);
     }
 
+    // Updates health and mana values within valid bounds
     public void SetHealth(int newHealth)
     {
         health = Mathf.Clamp(newHealth, 0, maxHealth);

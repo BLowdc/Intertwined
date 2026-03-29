@@ -13,6 +13,7 @@ public class SpawnBridge : MonoBehaviour
     }
     void Update()
     {
+        // Spawn bridge in first level when either pressure plate is activated
         if (pressurePlateA.IsPressed || pressurePlateB.IsPressed)
         {
             bridge.SetActive(false);
@@ -23,4 +24,3 @@ public class SpawnBridge : MonoBehaviour
         }
     }
 }
-
